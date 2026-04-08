@@ -87,13 +87,13 @@ export const HTML_UI = `<!DOCTYPE html>
 </div>
 
 <script>
-let sid = localStorage.getItem('jeopardy_session') || crypto.randomUUID();
+var sid = localStorage.getItem('jeopardy_session') || crypto.randomUUID();
 localStorage.setItem('jeopardy_session', sid);
 document.getElementById('sessionId').textContent = sid.slice(0, 8);
 
-let lastResult = null;
-let catOffset = 0;
-let catQuery = '';
+var lastResult = null;
+var catOffset = 0;
+var catQuery = '';
 
 function newSession() {
   sid = crypto.randomUUID();
