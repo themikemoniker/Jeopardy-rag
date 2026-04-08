@@ -95,6 +95,8 @@ jobs:
     concurrency:
       group: deploy-production
       cancel-in-progress: false
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
     steps:
       - name: Deploy to Hetzner
@@ -104,6 +106,7 @@ jobs:
           username: root
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           passphrase: ${{ secrets.DEPLOY_SSH_PASSPHRASE }}
+          envs: ANTHROPIC_API_KEY
           script_stop: true
           script: |
             set -e
