@@ -1,0 +1,26 @@
+{
+  "name": "jeopardy-rag",
+  "version": "1.0.0",
+  "description": "Jeopardy question retrieval system using hierarchical LLM routing",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts serve",
+    "ingest": "ts-node src/index.ts ingest",
+    "enrich": "ts-node src/index.ts enrich",
+    "ask": "ts-node src/index.ts ask",
+    "stats": "ts-node src/index.ts stats"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "latest",
+    "better-sqlite3": "latest",
+    "express": "latest",
+    "dotenv": "latest"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "latest",
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "typescript": "latest",
+    "ts-node": "latest"
+  }
+}
