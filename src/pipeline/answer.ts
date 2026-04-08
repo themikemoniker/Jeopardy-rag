@@ -11,7 +11,7 @@ export async function generateAnswer(userQuestion: string, context: string): Pro
     const client = new Anthropic({ apiKey: config.ANTHROPIC_API_KEY });
 
     const response = await client.messages.create({
-      model: 'claude-sonnet-4-5-20241022',
+      model: 'claude-3-haiku-20240307',
       max_tokens: 1000,
       system: `You are an expert Jeopardy assistant with access to a curated set of real Jeopardy clues. Use the provided clues to answer the user's request. If they want to be quizzed, present clues in proper Jeopardy format (show the clue, wait for them to respond with 'What is…'). If they ask a factual question about Jeopardy history or categories, answer from the context. Be accurate — only reference clues that appear in the context.`,
       messages: [{

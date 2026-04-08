@@ -40,7 +40,7 @@ export async function enrichCategories(limit: number = 50): Promise<number> {
   try {
     const client = new Anthropic({ apiKey: config.ANTHROPIC_API_KEY });
     const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20241022',
+      model: 'claude-3-haiku-20240307',
       max_tokens: 4096,
       system: `You are a category description writer for a Jeopardy database. For each category provided, write a one-sentence description suitable for search routing. Return ONLY a JSON object mapping category names to descriptions. Example: {"SCIENCE": "Questions about scientific discoveries, theories, and notable scientists", "U.S. PRESIDENTS": "Questions about American presidents, their terms, and policies"}. Return nothing else, no markdown fences.`,
       messages: [{ role: 'user', content: prompt }],
