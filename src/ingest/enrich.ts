@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { config } from '../config';
 import { getUnenrichedCategories, getSampleQuestions, updateCategorySummary } from '../db/registry';
+import { getDb } from '../db/schema';
 
 export async function enrichCategories(limit: number = 50): Promise<number> {
   const categories = getUnenrichedCategories(limit);
@@ -71,7 +72,56 @@ export async function enrichCategories(limit: number = 50): Promise<number> {
   }
 }
 
+/**
+ * Enrich all unenriched categories in batches, with progress reporting.
+ */
+export async function enrichAll(batchSize: number = 50): Promise<{ totalEnriched: number; batches: number; durationMs: number }> {
+  const startTime = Date.now();
+  let totalEnriched = 0;
+  let batches = 0;
+
+  const db = getDb();
+  const totalPending = (db.prepare(
+    `SELECT COUNT(*) as cnt FROM category_registry WHERE summary IS NULL`
+  ).get() as { cnt: number }).cnt;
+
+  if (totalPending === 0) {
+    console.log('  [enrich] All categories are already enriched.');
+    return { totalEnriched: 0, batches: 0, durationMs: 0 };
+  }
+
+  console.log(`  [enrich] ${totalPending} categories pending enrichment.`);
+
+  while (true) {
+    const remaining = (db.prepare(
+      `SELECT COUNT(*) as cnt FROM category_registry WHERE summary IS NULL`
+    ).get() as { cnt: number }).cnt;
+
+    if (remaining === 0) break;
+
+    batches++;
+    const enriched = await enrichCategories(batchSize);
+    totalEnriched += enriched;
+
+    const pct = Math.round(((totalPending - remaining + enriched) / totalPending) * 100);
+    console.log(`  [enrich] Progress: ${pct}% (${totalEnriched}/${totalPending} enriched, batch ${batches})`);
+
+    if (enriched === 0) break; // Safety: stop if a batch fails
+  }
+
+  const durationMs = Date.now() - startTime;
+  console.log(`  [enrich] Complete: ${totalEnriched} categories enriched in ${batches} batches (${durationMs}ms)`);
+  return { totalEnriched, batches, durationMs };
+}
+
 export function hasUnenrichedCategories(): boolean {
   const cats = getUnenrichedCategories(1);
   return cats.length > 0;
+}
+
+export function getUnenrichedCount(): number {
+  const db = getDb();
+  return (db.prepare(
+    `SELECT COUNT(*) as cnt FROM category_registry WHERE summary IS NULL`
+  ).get() as { cnt: number }).cnt;
 }

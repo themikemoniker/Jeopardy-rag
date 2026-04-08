@@ -4,7 +4,7 @@ import { config, printMockWarning } from './config';
 import { getDb, closeDb } from './db/schema';
 import { getStats } from './db/queries';
 import { loadFile } from './ingest/load';
-import { enrichCategories, hasUnenrichedCategories } from './ingest/enrich';
+import { enrichCategories, enrichAll, hasUnenrichedCategories, getUnenrichedCount } from './ingest/enrich';
 import { ask } from './pipeline/orchestrator';
 import { startServer } from './server/index';
 
@@ -39,14 +39,25 @@ async function main(): Promise<void> {
     }
 
     case 'enrich': {
+      const isAll = args.includes('--all');
       let limit = config.ENRICH_BATCH_SIZE;
       const limitIdx = args.indexOf('--limit');
       if (limitIdx !== -1 && args[limitIdx + 1]) {
         limit = parseInt(args[limitIdx + 1], 10) || limit;
       }
-      console.log(`Enriching up to ${limit} categories...`);
-      const enriched = await enrichCategories(limit);
-      console.log(`Enriched ${enriched} categories.`);
+
+      const pending = getUnenrichedCount();
+      console.log(`${pending} categories pending enrichment.`);
+
+      if (isAll) {
+        console.log(`Enriching ALL categories in batches of ${limit}...`);
+        const result = await enrichAll(limit);
+        console.log(`Done: ${result.totalEnriched} enriched in ${result.batches} batches (${result.durationMs}ms)`);
+      } else {
+        console.log(`Enriching up to ${limit} categories...`);
+        const enriched = await enrichCategories(limit);
+        console.log(`Enriched ${enriched} categories.`);
+      }
       break;
     }
 
@@ -93,9 +104,10 @@ async function main(): Promise<void> {
 
 Usage:
   ts-node src/index.ts ingest <filePath>       Ingest a TSV/CSV/JSON file
-  ts-node src/index.ts enrich [--limit N]      Enrich category summaries
+  ts-node src/index.ts enrich [--limit N]      Enrich category summaries (one batch)
+  ts-node src/index.ts enrich --all            Enrich ALL pending categories
   ts-node src/index.ts ask "question"          Ask a question
-  ts-node src/index.ts serve [--port N]        Start HTTP server
+  ts-node src/index.ts serve [--port N]        Start HTTP server (includes web UI)
   ts-node src/index.ts stats                   Show database stats`);
       break;
   }
