@@ -32,7 +32,7 @@ export async function routeQuery(userQuestion: string): Promise<string[]> {
         : 'You are a routing assistant. Return ONLY a valid JSON array of 1-3 category names from the index below. The names must match exactly. No markdown, no explanation, just the JSON array. Example: ["CATEGORY1"]';
 
       const response = await client.messages.create({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'claude-3-haiku-20240307',
         max_tokens: 150,
         system: systemPrompt,
         messages: [{

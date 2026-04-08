@@ -40,19 +40,26 @@ export async function enrichCategories(limit: number = 50): Promise<number> {
   try {
     const client = new Anthropic({ apiKey: config.ANTHROPIC_API_KEY });
     const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+      model: 'claude-3-haiku-20240307',
       max_tokens: 4096,
-      system: `You are a category description writer for a Jeopardy database. For each category provided, write a one-sentence description suitable for search routing. Return ONLY a JSON object mapping category names to descriptions. Example: {"SCIENCE": "Questions about scientific discoveries, theories, and notable scientists", "U.S. PRESIDENTS": "Questions about American presidents, their terms, and policies"}. Return nothing else, no markdown fences.`,
-      messages: [{ role: 'user', content: prompt }],
+      system: `Return ONLY a valid JSON object. No explanation, no markdown, no text before or after the JSON. Map each category name to a one-sentence description for search routing. Example output: {"SCIENCE": "Questions about scientific discoveries and theories", "HISTORY": "Questions about historical events and figures"}`,
+      messages: [{ role: 'user', content: `Write a one-sentence description for each category below. Return ONLY valid JSON.\n\n${prompt}` }],
     });
 
     const text = response.content[0].type === 'text' ? response.content[0].text : '';
 
-    // Parse JSON - try to extract from possible markdown fences
+    // Extract JSON from response — handle markdown fences, preamble text, etc.
     let jsonStr = text.trim();
     if (jsonStr.startsWith('```')) {
       jsonStr = jsonStr.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
     }
+    // If Haiku added text before the JSON, extract the JSON object
+    const jsonMatch = jsonStr.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      console.warn('  [enrich] Could not find JSON in response:', jsonStr.slice(0, 100));
+      return 0;
+    }
+    jsonStr = jsonMatch[0];
 
     const parsed = JSON.parse(jsonStr) as Record<string, string>;
 

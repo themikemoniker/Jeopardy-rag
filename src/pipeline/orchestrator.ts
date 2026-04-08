@@ -37,7 +37,7 @@ export async function ask(userQuestion: string, sessionId?: string): Promise<Ask
   const categories = await routeQuery(augmentedQuestion);
   const routeDuration = Date.now() - routeStart;
   callLog.push({
-    model: config.MOCK_MODE ? 'mock' : 'claude-haiku-4-5-20251001',
+    model: config.MOCK_MODE ? 'mock' : 'claude-3-haiku-20240307',
     tokens: 0,
   });
 
@@ -50,7 +50,7 @@ export async function ask(userQuestion: string, sessionId?: string): Promise<Ask
   const whereClause = await buildFilter(augmentedQuestion, categories);
   const filterDuration = Date.now() - filterStart;
   callLog.push({
-    model: config.MOCK_MODE ? 'mock' : 'claude-haiku-4-5-20251001',
+    model: config.MOCK_MODE ? 'mock' : 'claude-3-haiku-20240307',
     tokens: 0,
   });
 
@@ -75,7 +75,7 @@ export async function ask(userQuestion: string, sessionId?: string): Promise<Ask
   const answer = await generateAnswer(userQuestion, answerContext);
   const answerDuration = Date.now() - answerStart;
   callLog.push({
-    model: config.MOCK_MODE ? 'mock' : 'claude-sonnet-4-6-20250514',
+    model: config.MOCK_MODE ? 'mock' : 'claude-3-haiku-20240307',
     tokens: 0,
   });
 
