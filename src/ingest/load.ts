@@ -9,7 +9,7 @@ const ROUND_MAP: Record<string, string> = {
   '3': 'Final Jeopardy!',
 };
 
-function parseValue(raw: string | undefined | null): number | null {
+export function parseValue(raw: string | undefined | null): number | null {
   if (!raw || raw.trim() === '') return null;
   const cleaned = raw.replace(/[$,]/g, '').trim();
   if (cleaned === '' || cleaned.toLowerCase() === 'none' || cleaned.toLowerCase() === 'null') return null;
@@ -17,7 +17,7 @@ function parseValue(raw: string | undefined | null): number | null {
   return isNaN(num) ? null : num;
 }
 
-function mapRound(raw: string | undefined | null): string | null {
+export function mapRound(raw: string | undefined | null): string | null {
   if (!raw) return null;
   const trimmed = raw.trim();
   return ROUND_MAP[trimmed] || trimmed;
@@ -225,7 +225,7 @@ async function loadJson(filePath: string, startTime: number): Promise<IngestResu
   return { rowsAdded, rowsSkipped, durationMs };
 }
 
-function parseLine(line: string, delimiter: string): string[] {
+export function parseLine(line: string, delimiter: string): string[] {
   const fields: string[] = [];
   let current = '';
   let inQuotes = false;

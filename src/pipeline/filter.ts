@@ -2,7 +2,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import { config } from '../config';
 import { mockFilter } from './mock';
 
-const DANGEROUS_PATTERNS = /\b(DROP|DELETE|UPDATE|INSERT|ALTER|CREATE|TRUNCATE)\b|;|--/i;
+export const DANGEROUS_PATTERNS = /\b(DROP|DELETE|UPDATE|INSERT|ALTER|CREATE|TRUNCATE)\b|;|--/i;
 
 export async function buildFilter(userQuestion: string, categories: string[]): Promise<string | null> {
   if (config.MOCK_MODE) {
