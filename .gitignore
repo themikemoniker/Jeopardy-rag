@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.db
+*.db-shm
+*.db-wal
+.env
+*.log
+data/combined*.tsv
+
+# OpenTofu / Terraform
+deploy/.terraform/
+deploy/.terraform.lock.hcl
+deploy/*.tfstate
+deploy/*.tfstate.*
+deploy/tfplan
+deploy/terraform.tfvars
+deploy/.terraform.tfstate.lock.info

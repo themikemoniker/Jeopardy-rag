@@ -1,0 +1,51 @@
+round	value	daily_double_value	category	comments	answer	question	air_date	notes
+1	200		SCIENCE		This planet is known as the Red Planet	What is Mars?	2000-01-01
+1	400		SCIENCE		This element has the atomic number 79	What is gold?	2000-01-01
+1	600		SCIENCE		This scientist developed the theory of relativity	Who is Albert Einstein?	2000-01-02
+1	800		SCIENCE		This gas makes up about 78% of Earth's atmosphere	What is nitrogen?	2000-01-02
+1	1000		SCIENCE		This is the hardest natural substance on Earth	What is diamond?	2000-01-03
+1	200		U.S. PRESIDENTS		He was the first president of the United States	Who is George Washington?	2000-01-01
+1	400		U.S. PRESIDENTS		This president issued the Emancipation Proclamation	Who is Abraham Lincoln?	2000-01-01
+1	600		U.S. PRESIDENTS		He was president during the Cuban Missile Crisis	Who is John F. Kennedy?	2000-01-02
+1	800		U.S. PRESIDENTS		This president resigned from office in 1974	Who is Richard Nixon?	2000-01-02
+1	1000		U.S. PRESIDENTS		He served as both the 22nd and 24th president	Who is Grover Cleveland?	2000-01-03
+2	400		ASTRONOMY		This is the largest planet in our solar system	What is Jupiter?	2000-01-01
+2	800		ASTRONOMY		This astronomer first observed the moons of Jupiter	Who is Galileo?	2000-01-01
+2	1200		ASTRONOMY		This is the closest star to our solar system	What is Proxima Centauri?	2000-01-02
+2	1600		ASTRONOMY		This comet is visible from Earth roughly every 76 years	What is Halley's Comet?	2000-01-02
+2	2000		ASTRONOMY		This space telescope was launched in 1990	What is the Hubble Space Telescope?	2000-01-03
+1	200		WORLD HISTORY		This wall divided Berlin from 1961 to 1989	What is the Berlin Wall?	2000-01-04
+1	400		WORLD HISTORY		This queen ruled England for over 60 years in the 19th century	Who is Queen Victoria?	2000-01-04
+1	600		WORLD HISTORY		This treaty ended World War I	What is the Treaty of Versailles?	2000-01-04
+1	800		WORLD HISTORY		He led India to independence through nonviolent resistance	Who is Mahatma Gandhi?	2000-01-05
+1	1000		WORLD HISTORY		This empire was ruled by Genghis Khan	What is the Mongol Empire?	2000-01-05
+3			LITERARY CHARACTERS		This Brontë sister created the character of Jane Eyre	Who is Charlotte Brontë?	2000-01-05
+1	200		AMERICAN LITERATURE		This Mark Twain novel features a boy who fakes his own death	What is "The Adventures of Tom Sawyer"?	2000-01-06
+1	400		AMERICAN LITERATURE		She wrote "To Kill a Mockingbird"	Who is Harper Lee?	2000-01-06
+1	600		AMERICAN LITERATURE		This poet wrote "The Road Not Taken"	Who is Robert Frost?	2000-01-06
+1	800		AMERICAN LITERATURE		This author created the character Jay Gatsby	Who is F. Scott Fitzgerald?	2000-01-07
+1	1000		AMERICAN LITERATURE		She wrote "Beloved" and won the Nobel Prize	Who is Toni Morrison?	2000-01-07
+2	400		GEOGRAPHY		This is the longest river in Africa	What is the Nile?	2000-01-06
+2	800		GEOGRAPHY		This country has the most people in the world	What is China?	2000-01-06
+2	1200		GEOGRAPHY		This desert is the largest hot desert in the world	What is the Sahara?	2000-01-07
+2	1600		GEOGRAPHY		This is the smallest country in the world	What is Vatican City?	2000-01-07
+2	2000		GEOGRAPHY		This mountain range separates Europe from Asia	What are the Ural Mountains?	2000-01-08
+1	200		SPORTS		This sport uses a shuttlecock	What is badminton?	2000-01-08
+1	400		SPORTS		He holds the record for most home runs in a career	Who is Barry Bonds?	2000-01-08
+1	600		SPORTS		This country hosted the first modern Olympic Games in 1896	What is Greece?	2000-01-08
+1	800		SPORTS		This tennis tournament is played on grass courts	What is Wimbledon?	2000-01-09
+1	1000		SPORTS		He was known as "The Great One" in hockey	Who is Wayne Gretzky?	2000-01-09
+3			FAMOUS INVENTIONS		This man is credited with inventing the telephone	Who is Alexander Graham Bell?	2000-01-09
+1	200		MUSIC		This "Fab Four" band hails from Liverpool	Who are The Beatles?	2000-01-10
+1	400		MUSIC		She is known as the "Queen of Pop"	Who is Madonna?	2000-01-10
+1	600		MUSIC		This Austrian composer wrote "The Marriage of Figaro"	Who is Mozart?	2000-01-10
+1	800		MUSIC		This instrument has 88 keys	What is a piano?	2000-01-10
+1	1000		MUSIC		He composed the "Moonlight Sonata"	Who is Beethoven?	2000-01-11
+2	400		MOVIES		This 1994 film features a man sitting on a bench telling his life story	What is "Forrest Gump"?	2000-01-11
+2	800		MOVIES		He directed "Schindler's List" and "Jurassic Park"	Who is Steven Spielberg?	2000-01-11
+2	1200		MOVIES		This film won the first Academy Award for Best Picture	What is "Wings"?	2000-01-11
+2	1600		MOVIES		She played Scarlett O'Hara in "Gone with the Wind"	Who is Vivien Leigh?	2000-01-12
+2	2000		MOVIES		This 1972 film is about the Corleone crime family	What is "The Godfather"?	2000-01-12
+1	200		FOOD & DRINK		This Italian dish is made with layers of pasta, meat, and cheese	What is lasagna?	2000-01-12
+1	400		FOOD & DRINK		This is the most consumed beverage in the world after water	What is tea?	2000-01-12
+1	600		FOOD & DRINK		This fruit is the main ingredient in guacamole	What is avocado?	2000-01-13
