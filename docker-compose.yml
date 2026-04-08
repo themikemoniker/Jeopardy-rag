@@ -1,0 +1,24 @@
+services:
+  jeopardy-rag:
+    build: .
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      - jeopardy-data:/data
+      - ./data:/app/data:ro
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - DB_PATH=/data/jeopardy.db
+      - PORT=3000
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - ENRICH_BATCH_SIZE=${ENRICH_BATCH_SIZE:-50}
+      - MOCK_MODE=${MOCK_MODE:-false}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/stats').then(r=>{if(!r.ok)throw 1})"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  jeopardy-data:
