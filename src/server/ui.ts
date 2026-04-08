@@ -87,7 +87,13 @@ export const HTML_UI = `<!DOCTYPE html>
 </div>
 
 <script>
-var sid = localStorage.getItem('jeopardy_session') || crypto.randomUUID();
+function generateId() {
+  try { return crypto.randomUUID(); } catch(e) {
+    return 'xxxxxxxx-xxxx'.replace(/x/g, function() { return (Math.random()*16|0).toString(16); });
+  }
+}
+
+var sid = localStorage.getItem('jeopardy_session') || generateId();
 localStorage.setItem('jeopardy_session', sid);
 document.getElementById('sessionId').textContent = sid.slice(0, 8);
 
@@ -96,7 +102,7 @@ var catOffset = 0;
 var catQuery = '';
 
 function newSession() {
-  sid = crypto.randomUUID();
+  sid = generateId();
   localStorage.setItem('jeopardy_session', sid);
   document.getElementById('sessionId').textContent = sid.slice(0, 8);
 }
